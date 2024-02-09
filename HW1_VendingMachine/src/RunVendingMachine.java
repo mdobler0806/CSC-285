@@ -1,25 +1,27 @@
-import java.util.Stack;
+/*******************************************
+ * Name: Matthew Dobler
+ * Class: CSC-285
+ * Date: 2/9/2024
+ * Assignment: HW1_VendingMachine
+ *******************************************/
 
+import java.util.Stack;
 
 /**
  * Run the Vending Machine.
  */
 public class RunVendingMachine {
-
-
     /**
-     *  Illustrates the Vending Machine.
+     * Illustrates the Vending Machine.
      */
     public static void main(String[] args) {
-
 
         // Create a new Empty Vending Machine.
         VendingMachine machine = new VendingMachine();
 
-
         // Stock up of Diet Cokes
         Stack<Product> dietCokeStack = new Stack<>();
-        for (int i=0; i<5; i++) {
+        for (int i = 0; i < 5; i++) {
             Drink dietCoke = new Drink("Diet Coke");
             dietCokeStack.push(dietCoke);
         }
@@ -28,7 +30,7 @@ public class RunVendingMachine {
 
         //  Stock up on Cliff Bars
         Stack<Product> cliffBarStack = new Stack<>();
-        for (int i=0; i<3; i++) {
+        for (int i = 0; i < 3; i++) {
             Snack cliffBar = new Snack("Cliff Bar");
             cliffBarStack.push(cliffBar);
         }
