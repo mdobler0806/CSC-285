@@ -13,6 +13,8 @@ import java.util.Stack;
 public class RunVendingMachine {
     /**
      * Illustrates the Vending Machine.
+     *
+     * @param args Command Line arguments that we don't use in this program.
      */
     public static void main(String[] args) {
 
