@@ -8,111 +8,111 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
+ * This class reads through a CSV file containing Titanic passenger information. It uses the
+ * passenger list to enumerate the number of passengers on the whole ship as well as in each
+ * "class" on the ship.
+ *
  * @author Matthew Dobler CSC-285
  */
 public class TitanicReader {
+    /**
+     * A file variable to store the Titanic CSV file.
+     */
     File file;
+
+    /**
+     * Simple logger for logging :) Using the Simple Logger Facade 4 Java.
+     */
     Logger logger = LoggerFactory.getLogger(TitanicReader.class);
 
     /**
-     * @param file a csv file with passenger information
+     * Stores the total number of passengers.
+     */
+    int numPassengers;
+
+    /**
+     * Stores the number of first class passengers on the ship.
+     */
+    int numFirstClassPassengers;
+
+    /**
+     * Stores the number of second class passengers on the ship.
+     */
+    int numSecondClassPassengers;
+
+    /**
+     * Stores the number of third class passengers on the ship.
+     */
+    int numThirdClassPassengers;
+
+    /**
+     * The constructor does the heavy lifting in {@code TitanicReader}.
+     * <p>
+     * Instantiates the TitanicReader class while simultaneously reading through the passed CSV
+     * file and counting the number of first, second, and third class passengers. Then saves these
+     * numbers to their respective instance variables;
+     *
+     * @param file A csv file with passenger information
      */
     public TitanicReader(File file) {
         this.file = file;
+        Scanner fileOutput = null;
+        try {
+            fileOutput = new Scanner(this.file);
+        } catch (FileNotFoundException e) {
+            logger.error("The file was not found");
+            throw new RuntimeException(e);
+        }
+        fileOutput.nextLine();
+        while (fileOutput.hasNextLine()) {
+            String[] temp = fileOutput.nextLine().split(",");
+            numPassengers++;
+            if (Integer.parseInt(temp[2]) == 1) {
+                numFirstClassPassengers++;
+            }
+            if (Integer.parseInt(temp[2]) == 2) {
+                numSecondClassPassengers++;
+            }
+            if (Integer.parseInt(temp[2]) == 3) {
+                numThirdClassPassengers++;
+            }
+        }
+        fileOutput.close();
     }
 
     /**
-     * This method reads the titanic csv file and returns the number of total passengers.
+     * Accessor that returns the instance variable {@link #numPassengers}.
      *
      * @return the number of passengers
      */
     public int getNumPassengers() {
-        int numPassengers = 0;
-        Scanner fileOutput = null;
-        try {
-            fileOutput = new Scanner(this.file);
-        } catch (FileNotFoundException e) {
-            logger.error("The file was not found");
-            throw new RuntimeException(e);
-        }
-        while (fileOutput.hasNextLine()) {
-            fileOutput.nextLine();
-            numPassengers++;
-        }
-        fileOutput.close();
-        return numPassengers - 1;
+        return numPassengers;
     }
 
     /**
-     * This method reads the titanic csv file and returns the total number of first class passengers
+     * Accessor that returns the instance variable, {@link #numFirstClassPassengers}.
      *
      * @return the number of first class passengers
      */
     public int getNumFirstClassPassengers() {
-        int numFirstClass = 0;
-        Scanner fileOutput = null;
-        try {
-            fileOutput = new Scanner(this.file);
-        } catch (FileNotFoundException e) {
-            logger.error("The file was not found");
-            throw new RuntimeException(e);
-        }
-        fileOutput.nextLine();
-        while (fileOutput.hasNextLine()) {
-            String[] temp = fileOutput.nextLine().split(",");
-            if (Integer.parseInt(temp[2]) == 1) {
-                numFirstClass++;
-            }
-        }
-        return numFirstClass;
+        return numFirstClassPassengers;
     }
 
     /**
-     * This method reads the titanic csv file and calculates the total number of second class passengers
+     * Accessor that returns the instance variable, {@link #numSecondClassPassengers}.
      *
      * @return the number of second class passengers
      */
     public int getNumSecondClassPassengers() {
-        int numSecondClass = 0;
-        Scanner fileOutput = null;
-        try {
-            fileOutput = new Scanner(this.file);
-        } catch (FileNotFoundException e) {
-            logger.error("The file was not found");
-            throw new RuntimeException(e);
-        }
-        fileOutput.nextLine();
-        while (fileOutput.hasNextLine()) {
-            String[] temp = fileOutput.nextLine().split(",");
-            if (Integer.parseInt(temp[2]) == 2) {
-                numSecondClass++;
-            }
-        }
-        return numSecondClass;
+        return numSecondClassPassengers;
     }
 
     /**
-     * This method reads the titanic csv file and calculates the total number of third class passengers
+     * Accessor that returns the instance variable, {@link #numThirdClassPassengers}.
      *
      * @return the number of third class passengers
      */
     public int getNumThirdClassPassengers() {
-        int numThirdClass = 0;
-        Scanner fileOutput = null;
-        try {
-            fileOutput = new Scanner(this.file);
-        } catch (FileNotFoundException e) {
-            logger.error("The file was not found");
-            throw new RuntimeException(e);
-        }
-        fileOutput.nextLine();
-        while (fileOutput.hasNextLine()) {
-            String[] temp = fileOutput.nextLine().split(",");
-            if (Integer.parseInt(temp[2]) == 3) {
-                numThirdClass++;
-            }
-        }
-        return numThirdClass;
+        return numThirdClassPassengers;
     }
-
 }
