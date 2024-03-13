@@ -2,9 +2,9 @@ package edu.bhcc;
 
 /****************************
  *  @Author : Matthew Dobler"
- *  @Date    : 2/24/24"
- *  @File   : Truck"
+ *  @Date    : 3/1/24"
+ *  @File   : Demo"
  *  @Class   : CSC-"
  *****************************/
-public class Truck {
+public class Demo {
 }
