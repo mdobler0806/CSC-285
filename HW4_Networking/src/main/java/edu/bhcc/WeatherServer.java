@@ -9,9 +9,23 @@ import java.util.Date;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+
+/**
+ * @author Matthew Dobler
+ * This class simulates a weather server which contains weather data that can be requested from
+ * a client.
+ */
 public class WeatherServer {
     private static final int DEFAULT_NUM_THREADS = 6;
 
+    /**
+     * Creates a server and utilizes multithreading to handle multiple clients' requests for weather
+     * data on a specific data passed from the client to the server.
+     *
+     * @param args Not used in this program.
+     * @throws IOException           Occurs if a socket cannot be properly created or connected to.
+     * @throws FileNotFoundException Occurs if a file cannot be located as specified.
+     */
     public static void main(String[] args) throws IOException, FileNotFoundException
     {
         Logger logger = LoggerFactory.getLogger(WeatherServer.class);

@@ -9,6 +9,11 @@ import java.net.Socket;
 import java.util.HashMap;
 
 
+/**
+ * @author Matthew Dobler
+ * A task class that handles the client's weather data request from the server. Allows the server
+ * to handle multiple client requests at once.
+ */
 public class HandleWeatherRequest implements Runnable {
     private Socket socket;
     private InputStreamReader inputFromClient;
@@ -24,14 +29,19 @@ public class HandleWeatherRequest implements Runnable {
         this.inputFromClient = new InputStreamReader(socket.getInputStream());
         this.inputFromClientReader = new BufferedReader(inputFromClient);
         this.outputObjectToClient = new ObjectOutputStream(socket.getOutputStream());
-        this.logger =  LoggerFactory.getLogger(WeatherServer.class);
+        this.logger = LoggerFactory.getLogger(WeatherServer.class);
         this.weatherReader = weatherReader;
     }
 
+    /**
+     * Gets the weather for the specific date that the client sent and sends that weather (in
+     * the form of a weather object) back to the client.
+     */
     @Override
     public void run()
     {
-        try {
+        try
+        {
             Weather weatherRequested = weatherReader.getWeather(inputFromClientReader.readLine());
             outputObjectToClient.writeObject(weatherRequested);
             logger.info("Weather: " + weatherRequested + " sent back to client");
@@ -39,7 +49,8 @@ public class HandleWeatherRequest implements Runnable {
             socket.close();
             logger.info("Socket: " + socket + " closed");
 
-        } catch (IOException e) {
+        } catch (IOException e)
+        {
             logger.error("There was a problem when sending the data back to the client");
             throw new RuntimeException(e);
         }

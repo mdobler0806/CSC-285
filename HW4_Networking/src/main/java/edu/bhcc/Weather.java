@@ -3,6 +3,7 @@ package edu.bhcc;
 import java.io.Serializable;
 
 /**
+ * @author Matthew Dobler
  * Represents weather conditions for a specific day, including precipitation, maximum and minimum
  * temperatures, wind speed, and general weather conditions.
  */
@@ -18,10 +19,10 @@ public class Weather implements Serializable {
      * Constructs a new Weather object.
      *
      * @param precipitation the amount of precipitation
-     * @param tempMax the maximum temperature
-     * @param tempMin the minimum temperature
-     * @param wind the wind speed
-     * @param weather the general weather condition
+     * @param tempMax       the maximum temperature
+     * @param tempMin       the minimum temperature
+     * @param wind          the wind speed
+     * @param weather       the general weather condition
      */
     public Weather(double precipitation, double tempMax, double tempMin, double wind, String weather)
     {
@@ -85,6 +86,7 @@ public class Weather implements Serializable {
 
     /**
      * Simple toString method.
+     *
      * @return String with all the info contained in a weather object.
      */
     @Override

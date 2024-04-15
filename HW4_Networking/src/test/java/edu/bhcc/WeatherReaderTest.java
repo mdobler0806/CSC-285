@@ -7,18 +7,23 @@ import java.io.File;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
+/**
+ * @author Matthew Dobler
+ * Unit tests for WeatherReader's data reading and retrieving functionality.
+ */
 class WeatherReaderTest {
     private WeatherReader weatherReader;
 
     @BeforeEach
-    void setUp() {
+    void setUp()
+    {
         File testWeatherData = new File("src/main/resources/seattle-weather.csv");
         weatherReader = new WeatherReader(testWeatherData);
     }
 
     @Test
-    void testGetWeather_ValidDate_ReturnsCorrectWeather() {
+    void testGetWeather_ValidDate_ReturnsCorrectWeather()
+    {
         //Using a date we know exists in the weather csv file
         String testDate = "2012-08-10";
         Weather weather = weatherReader.getWeather(testDate);
@@ -34,7 +39,8 @@ class WeatherReaderTest {
     }
 
     @Test
-    void testGetWeather_InvalidDate_ReturnsNull() {
+    void testGetWeather_InvalidDate_ReturnsNull()
+    {
         //Using an invalid date we know doesn't exist should return null
         String testDate = "2020-01-01";
         Weather weather = weatherReader.getWeather(testDate);
